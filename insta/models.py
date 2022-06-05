@@ -1,16 +1,25 @@
 from django.db import models
-# import datetime as dt
-
+from django.contrib.auth.models import User
 
 # Create your models here.
 
-# class Profile(models.Model):
-    # profile_photo = models.ImageField(null=False, blank=False)
-    # bio = models.TextField()
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    profile_photo = models.ImageField(null=True, blank=True)
+    created = models.DateField(auto_now_add=True)
+    bio = models.TextField()
+
+def create_user_profile(sender, instance,created, **kwargs):
+    if created:
+        Profile.objects.create(user=instance)
+
+def save_user_profile(sender,instance, **kwargs):
+    instance.profile.save()
+    
     
 
-    # def __str__(self):
-        # return self.bio
+    def __str__(self):
+        return self.bio
 
 
 # class Image(models.Model):
