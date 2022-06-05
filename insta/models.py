@@ -13,7 +13,6 @@ from django.db import models
         # return self.bio
 
 
-
 # class Image(models.Model):
 #     image = models.ImageField(null=False, blank=False)
 #     image_name = models.CharField(max_length =30)
