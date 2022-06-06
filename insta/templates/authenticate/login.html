@@ -18,7 +18,7 @@
 			width: 330px;
             height: 510px;
 			margin-top: 70px;
-            margin-bottom: 70px;
+            margin-bottom: auto;
 			position: relative;
 			display: flex;
 			justify-content: center;
@@ -61,7 +61,7 @@
 
 </head>
 <body>
-	<div class="container">
+	<div class="container">		
 		<div class="d-flex justify-content-center">
 			<div class="user_card">
 				<div class="d-flex justify-content-center">
@@ -72,9 +72,6 @@
                         {% csrf_token %}
 						<div class="input-group mb-3">
 							<div class="input-group-append">
-							{% for message in messages %}
-                            <p>{{message}}</p>
-                            {% endfor %}
 								<span class="input-group-text"><i class="fas fa-user"></i></span>
 							</div>
 							<input type="text" name="username" placeholder="Username" class="form-control">
@@ -85,6 +82,9 @@
 							</div>
 								<input type="password" name="password" placeholder="Password" class="form-control" >
 						</div>
+						{% for message in messages %}
+							<p>{{message}}</p>
+						{% endfor %}
 
 							<div class="d-flex justify-content-center mt-5 login_container">
 				 				<input class="btn login_btn" type="submit" value="Login">
