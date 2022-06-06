@@ -30,7 +30,7 @@
     </div>
     <div class="container mt-5">
     <div class="col-6">
-     <img class="rounded-circle" src="{{user.profile.profile_photo.url}}" alt="">
+     <img style=" border-radius: 50%; width: 200px; height: 180px;" src="{{user.profile.profile_photo.url}}" alt="">
       <div class="media-body">
         <h2 class="account-heading">{{ user.username }}</h2>
         <p class="text-secondary">{{ user.email }}</p>
@@ -46,8 +46,25 @@
             </div>           
           </div>  
         </div><br>   
-        <a href="{% url 'update' %}"><button type="button" class="btn btn-outline-info">Edit Profile</button></a>
+        <a href="{% url 'update' %}"><button type="button" class="btn btn-primary">Edit Profile</button></a>
   </div>
+  <div class="container my-5">
+    <div class="row">
+        {% for image in images %}
+        <div class="col-md-4 mb-3">
+            <div class="card">
+                <img style="height:240px;"src="{{image.image.url}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                  {{image.image_caption}}
+                </div>
+            </div>
+        </div>
+
+        {%  endfor %}
+    </div>
+</div>
+
+  
 {% endblock content %}
     
 {% block scripts %}

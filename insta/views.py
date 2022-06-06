@@ -5,13 +5,23 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .forms import UserUpdateForm, ProfileUpdateForm
+from .models import Image
+
 
 # Create your views here. 
 
 @login_required
 def profile(request):
 
-    return render(request, 'profile.html')
+    images = Image.objects.all()
+    return render(request, 'profile.html',{'images':images})
+    
+
+@login_required
+def home(request):
+
+    images = Image.objects.all()
+    return render(request, 'profile.html',{'images':images})
 
 @login_required
 def update(request):
@@ -77,3 +87,4 @@ def logoutUser(request):
     logout(request)
 
     return redirect('login')
+
