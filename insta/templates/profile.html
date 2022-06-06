@@ -21,7 +21,14 @@
 </head>
 <body>    
   {% block content %} 
-   <div class="container mt-5">
+  
+    {% for message in messages %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">     
+        <p>{{message}}</p>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      {% endfor %} 
+    </div>
+    <div class="container mt-5">
     <div class="col-6">
      <img class="rounded-circle" src="{{user.profile.profile_photo.url}}" alt="">
       <div class="media-body">
