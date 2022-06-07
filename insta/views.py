@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.forms import UserCreationForm
 from .forms import CreateUserForm
 from django.contrib import messages
@@ -138,3 +138,15 @@ def post(request):
 	}
 
 	return render(request, 'post.html', context)
+
+def PostDetails(request, post_id):
+	post = get_object_or_404(Post, id=post_id)
+
+
+	template = loader.get_template('post_details.html') 
+	
+	context = {
+		'post':post,	
+	}
+
+	return HttpResponse(template.render(context, request))

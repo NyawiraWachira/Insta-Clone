@@ -11,6 +11,7 @@ urlpatterns=[
     path('update/',views.update, name='update'),
     path('home/',views.home, name='home'),
     path('post/',views.post, name='post'),
+    path('<uuid:post_id>/',views.PostDetails, name='postdetails'),
 ]
 
 if settings.DEBUG:
