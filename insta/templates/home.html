@@ -32,11 +32,13 @@
             <div class="card">             
                 <a href="{% url 'postdetails' post_item.id %}"><img src="{{post_item.picture.url}}" class="card-img-top" alt="..."></a>
                 <div class="card-body">
-                    <span class="material-symbols-outlined" style="margin-right: 8px;">favorite</span>
+                    <a href="{% url 'postlike' post_item.id %}"><span class="material-icons" style="margin-right: 8px; color:crimson">favorite</span></a>
                             <span class="material-symbols-outlined" style="margin-right: 8px;">comment</span>
                             <span class="material-symbols-outlined" >arrow_outward</span>
+                            
                 </div>
                 <div class="card-body">
+                    <p>{{post_item.likes}} Likes </p>
                     <h5 class="card-title">@{{post_item.user.username}}</h5>
                     <p class="card-text">{{post_item.caption}}</p>
                     
