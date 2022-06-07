@@ -20,30 +20,25 @@
   
 </head>
 <body>    
-  {% block content %} 
-  
- <div class="container mt-5">
+ {% block content %}
+ <div class="container my-5">
+     <a href="{% url 'home' %}" class="btn btn-outline-info my-2">Home Page</a> 
     <div class="d-flex justify-content-center">
-    <div class="row">
-        <div class="col-12">
-        {% for post_item in post_items %}
-            <div class="card">             
-                <a href="{% url 'postdetails' post_item.id %}"><img src="{{post_item.picture.url}}" class="card-img-top" alt="..."></a>
-                <div class="card-body">
-                    <h5 class="card-title">@{{post_item.user.username}}</h5>
-                    <p class="card-text">{{post_item.caption}}</p>
-                    
+        <div class="row">
+            <div class="col-12">
+                <div class="card">                        
+                    <img src="{{post.picture.url}}"  style="height:380px;" class="card-img-top" alt="...">            
+                        <div class="card-body">
+                            <h5 style="font-family: Oleo Script Swash Caps, cursive;"class="card-title">@{{post.user.username}}</h5>
+                            <p style="font-family: Oleo Script Swash Caps, cursive; font-size:25px;"class="card-text">{{post.caption}}</p>
+                            <p style="text-decoration:none;">{% for tag in post.tags.all %}<a href="">#{{ tag }}</a>{% endfor %}</p>
+                            <small>{{post.posted}}</small>                 
+                        </div>
                 </div>
-                <strong><small>{{post_item.posted}}</small></strong>
-             </div><br><br>
-             
-        {% endfor %}
-      
-
+            </div>
+        </div>
     </div>
-    </div>
-</div>
-</div>
+ </div>    
 
  {% endblock %}
  {% block scripts %}
