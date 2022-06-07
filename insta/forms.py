@@ -1,7 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
 from django.contrib.auth.models import User
-from .models import Profile,Post
+from .models import Profile,Post,Comment
 
 
 class CreateUserForm(UserCreationForm):
@@ -29,3 +29,10 @@ class NewPostForm(forms.ModelForm):
 	class Meta:
 		model = Post
 		fields = ('picture', 'caption', 'tags')
+        
+class CommentForm(forms.ModelForm):
+	body = forms.CharField(widget=forms.Textarea(attrs={'class': 'textarea'}), required=True)
+
+	class Meta:
+		model = Comment
+		fields = ('body',)
