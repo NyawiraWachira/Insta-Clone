@@ -4,8 +4,8 @@ from .forms import CreateUserForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from .forms import UserUpdateForm, ProfileUpdateForm
-from .models import Post, Stream,Profile
+from .forms import UserUpdateForm, ProfileUpdateForm,NewPostForm
+from .models import Post, Stream,Profile, Tag
 from django.template import loader
 from django.http import HttpResponse
 
@@ -106,3 +106,35 @@ def logoutUser(request):
 
     return redirect('login')
 
+
+@login_required
+def post(request):
+	user = request.user.id
+	tags_objs = []
+	
+
+	if request.method == 'POST':
+		form = NewPostForm(request.POST, request.FILES)
+		if form.is_valid():
+			picture = form.cleaned_data.get('picture')
+			caption = form.cleaned_data.get('caption')
+			tags_form = form.cleaned_data.get('tags')
+
+			tags_list = list(tags_form.split(','))
+
+			for tag in tags_list:
+				t, created = Tag.objects.get_or_create(title=tag)
+				tags_objs.append(t)
+
+			p, created = Post.objects.get_or_create(picture=picture, caption=caption, user_id=user)
+			p.tags.set(tags_objs) 
+			p.save()
+			return redirect('home')
+	else:
+		form = NewPostForm()
+
+	context = {
+		'form':form,
+	}
+
+	return render(request, 'post.html', context)
