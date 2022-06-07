@@ -1,0 +1,23 @@
+{%extends 'base.html'%}
+{% load static %}
+
+ {% block content %}
+ <div class="container my-5">
+    <div class="row">
+        {% for item in post_items %}
+        <div class="col-md-4 mb-3">
+            <div class="card">
+                <a href=""><img style="height:240px;"src="{{item.picture.url}}" class="card-img-top" alt="..."></a>
+                <div class="card-body">
+                    <p class="card-text">{{item.user.username}}</p>
+                    <p class="card-text">{{item.caption}}</p>
+                </div><br>
+                <time>{{ item.posted}}</time>
+            </div>
+        </div>
+
+        {%  endfor %}
+    </div>
+</div>
+
+ {% endblock %}

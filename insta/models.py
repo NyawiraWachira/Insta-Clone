@@ -19,8 +19,8 @@ class Tag(models.Model):
     class Meta:
         verbose_name_plural='Tags'
     
-    def get_absolute_url(self):
-        return reverse('tags', args=[str(self.id)])
+    # def get_absolute_url(self):
+    #     return reverse('tags', args=[str(self.id)])
 
     def __str__(self):
         return self.title
@@ -40,7 +40,7 @@ class Post(models.Model):
     likes = models.IntegerField()
 
     def get_absolute_url(self):
-        return reverse('postdetails', arg=[self.id])
+        return reverse('postdetails', args=[self.id])
 
 class Follow (models.Model):
     follower=models.ForeignKey(User, on_delete=models.CASCADE, related_name='follower')
@@ -62,10 +62,6 @@ class Stream(models.Model):
 
 post_save.connect(Stream.add_post, sender=Post)
        
-
-
-
-
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     profile_photo = models.ImageField(default='default.png', upload_to='profile_pics')
