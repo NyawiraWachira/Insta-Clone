@@ -5,7 +5,9 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .forms import UserUpdateForm, ProfileUpdateForm
-from .models import Image
+from .models import Post, Stream
+from django.template import loader
+from django.http import HttpResponse
 
 
 # Create your views here. 
@@ -13,15 +15,29 @@ from .models import Image
 @login_required
 def profile(request):
 
-    images = Image.objects.all()
-    return render(request, 'profile.html',{'images':images})
+    return render(request, 'profile.html')
     
 
 @login_required
 def home(request):
+    user=request.user
+    posts= Stream.objects.filter(user=user)
 
-    images = Image.objects.all()
-    return render(request, 'profile.html',{'images':images})
+    group_ids = []
+
+    for post in posts:
+        group_ids.append(post.post_id)
+
+    post_items = Post.objects.filter(id_in=group_ids).all().order_by('-posted')
+    template=loader.get_template('home.html')
+
+    context= {
+        'post_items': post_items,
+
+    }
+
+    return HttpResponse(template.render(context, request))    
+   
 
 @login_required
 def update(request):
