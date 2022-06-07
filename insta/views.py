@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .forms import UserUpdateForm, ProfileUpdateForm
-from .models import Post, Stream
+from .models import Post, Stream,Profile
 from django.template import loader
 from django.http import HttpResponse
 
@@ -27,8 +27,10 @@ def home(request):
 
     for post in posts:
         group_ids.append(post.post_id)
+    
 
-    post_items = Post.objects.filter(id_in=group_ids).all().order_by('-posted')
+    post_items = Post.objects.filter(id__in=group_ids).all().order_by('-posted')
+
     template=loader.get_template('home.html')
 
     context= {
@@ -36,7 +38,7 @@ def home(request):
 
     }
 
-    return HttpResponse(template.render(context, request))    
+    return HttpResponse(template.render(context, request  ))    
    
 
 @login_required
