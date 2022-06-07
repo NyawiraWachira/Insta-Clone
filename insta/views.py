@@ -16,7 +16,8 @@ from django.http import HttpResponse, HttpResponseRedirect
 @login_required
 def profile(request):
 
-    return render(request, 'profile.html')
+    posts = Post.objects.all()
+    return render(request, 'profile.html', {'posts': posts})
     
 
 @login_required
