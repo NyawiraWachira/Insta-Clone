@@ -29,11 +29,11 @@
     <div class="row">
         <div class="col-12">
         {% for post_item in post_items %}
-            <div class="card">             
+            <div class="card my-5">             
                 <a href="{% url 'postdetails' post_item.id %}"><img src="{{post_item.picture.url}}" class="card-img-top" alt="..."></a>
                 <div class="card-body">
                     <a href="{% url 'postlike' post_item.id %}"><span class="material-icons" style="margin-right: 8px; color:crimson">favorite</span></a>
-                            <span class="material-symbols-outlined" style="margin-right: 8px;">comment</span>
+                    <a href="{% url 'postdetails' post_item.id %}"><span class="material-symbols-outlined" style="margin-right: 8px;">comment</span></a>
                             <span class="material-symbols-outlined" >arrow_outward</span>
                             
                 </div>
@@ -41,11 +41,10 @@
                     <p>{{post_item.likes}} Likes </p>
                     <h5 class="card-title">@{{post_item.user.username}}</h5>
                     <p class="card-text">{{post_item.caption}}</p>
-                    
-                </div>
-                <strong><small>{{post_item.posted}}</small></strong>
-             </div><br><br>
-             
+                <strong><small>{{post_item.posted}}</small></strong><br><br>    
+                <a href="{% url 'postdetails' post_item.id %}"><button type="button" class="btn btn-outline-primary  btn-sm"> Comment Here</button></a>              
+             </div>
+            </div>                    
         {% endfor %}
       
 

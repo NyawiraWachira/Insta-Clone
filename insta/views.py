@@ -4,21 +4,27 @@ from .forms import CreateUserForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from .forms import UserUpdateForm, ProfileUpdateForm,NewPostForm
-from .models import Post, Stream,Profile, Tag, Likes
+from .forms import UserUpdateForm, ProfileUpdateForm,NewPostForm,CommentForm 
+from .models import Post, Stream,Profile, Tag, Likes,Comment
 from django.template import loader
-from django.urls import reverse
+from django.urls import reverse,resolve
 from django.http import HttpResponse, HttpResponseRedirect
 
 
 # Create your views here. 
 
+
+
 @login_required
 def profile(request):
 
+    url_name=resolve(request.path).url_name
+
+   
+
     posts = Post.objects.all()
     return render(request, 'profile.html', {'posts': posts})
-    
+   
 
 @login_required
 def home(request):
@@ -140,19 +146,7 @@ def post(request):
 	}
 
 	return render(request, 'post.html', context)
-
-def PostDetails(request, post_id):
-	post = get_object_or_404(Post, id=post_id)
-
-
-	template = loader.get_template('post_details.html') 
-	
-	context = {
-		'post':post,	
-	}
-
-	return HttpResponse(template.render(context, request))
-
+    
 
 
 @login_required
@@ -174,3 +168,35 @@ def like(request, post_id):
 	post.save()
 
 	return HttpResponseRedirect(reverse('home', args=[]))    
+
+
+
+@login_required
+def PostDetails(request, post_id):
+	post = get_object_or_404(Post, id=post_id)
+	user = request.user
+	comments = Comment.objects.filter(post=post).order_by('date')
+
+	if request.method == 'POST':
+		form = CommentForm(request.POST)
+		if form.is_valid():
+                    comment = form.save(commit=False)
+                    comment.post = post
+                    comment.user = user
+                    comment.save()
+                    return HttpResponseRedirect(reverse('postdetails', args=[post_id]))
+	else:
+		form = CommentForm()
+
+	template = loader.get_template('post_details.html')
+	context = {
+		'post':post,
+		'form':form,
+		'comments':comments,
+	}
+
+	return HttpResponse(template.render(context, request))
+
+
+
+
