@@ -12,7 +12,7 @@ urlpatterns=[
     path('home/',views.home, name='home'),
     path('post/',views.post, name='post'),
     path('<uuid:post_id>/',views.PostDetails, name='postdetails'),
-   path('<uuid:post_id>/like', views.like, name='postlike'),
+    path('<uuid:post_id>/like', views.like, name='postlike'),
 ]
 
 if settings.DEBUG:

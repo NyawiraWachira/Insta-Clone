@@ -9,7 +9,7 @@ from .models import Post, Stream,Profile, Tag, Likes,Comment,Follow
 from django.template import loader
 from django.db import transaction
 from django.contrib.auth.models import User
-from django.urls import reverse,resolve
+from django.urls import reverse
 from django.http import HttpResponse, HttpResponseRedirect
 
 
@@ -17,25 +17,18 @@ from django.http import HttpResponse, HttpResponseRedirect
 
 @login_required
 def profile(request):
-   
-    posts = Post.objects.all()
 
- 
-    return render(request, 'profile.html', {'posts': posts})
+    posts = Post.objects.all()
+     
+    return render(request, 'profile.html', {'posts': posts,})
    
 
 @login_required
 def home(request):
     user=request.user
-    posts= Stream.objects.filter(user=user)
+    posts = Post.objects.all()
 
-    group_ids = []
-
-    for post in posts:
-        group_ids.append(post.post_id)
-    
-
-    post_items = Post.objects.filter(id__in=group_ids).all().order_by('-posted')
+    post_items = Post.objects.all().order_by('-posted')
 
     template=loader.get_template('home.html')
 
@@ -194,30 +187,3 @@ def PostDetails(request, post_id):
 	}
 
 	return HttpResponse(template.render(context, request))
-
-@login_required
-def follow(request, username, option):
-	following = get_object_or_404(User, username=username)
-
-	try:
-		f, created = Follow.objects.get_or_create(follower=request.user, following=following)
-
-		if int(option) == 0:
-			f.delete()
-			Stream.objects.filter(following=following, user=request.user).all().delete()
-		else:
-			posts = Post.objects.all().filter(user=following)[:25]
-
-			with transaction.atomic():
-			 	for post in posts:
-			 		stream = Stream(post=post, user=request.user, date=post.posted, following=following)
-			 		stream.save()
-                    
-
-		return HttpResponseRedirect(reverse('profile', args=[username]))
-	except User.DoesNotExist:
-		return HttpResponseRedirect(reverse('profile', args=[username]))
-        
-	   
-
-
