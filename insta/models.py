@@ -19,8 +19,6 @@ class Tag(models.Model):
     class Meta:
         verbose_name_plural='Tags'
     
-    # def get_absolute_url(self):
-    #     return reverse('tags', args=[str(self.id)])
 
     def __str__(self):
         return self.title
@@ -38,6 +36,19 @@ class Post(models.Model):
     tags=models.ManyToManyField(Tag,related_name='tags')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     likes = models.IntegerField(default=0)
+
+
+    def __str__(self):
+        return self.caption
+
+    def save_post(self):
+        self.save()
+
+    def delete_post(self):
+        self.delete()
+    
+    def update_post(self):
+        self.new_caption.save()
 
     def get_absolute_url(self):
         return reverse('postdetails', args=[self.id])
@@ -76,6 +87,14 @@ class Profile(models.Model):
         
     def __str__(self):
         return f'{self.user.username} Profile'
+        
+
+    def delete_profile(self):
+        self.delete()
+    
+    def update_profile(self):
+        self.new_username.save()
+
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
