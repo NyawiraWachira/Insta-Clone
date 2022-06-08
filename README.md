@@ -6,7 +6,7 @@
 
 ## Description
 
-Instagram-Clone is a Django application that replicates a few features of Instagram web application. It enables users to view posts on the home page and click on each one of them to view the post details, like the post and comment on the post. Users can also create posts, write captions and hashtags on them.
+Instagram-Clone is a Django application that replicates a few features of Instagram web application. It enables users to view posts on the home page and click on each one of them to view the post details, to like the post and to comment on the post. Users can also create posts and put captions and hashtags on them.
 The application has a user profile page that displays user details including the profile picture, username, login user email and the bio, which users can edit to their preference user. Instagram-Clone also has an authentication system which allows users to sign up and login to access features of the application.
 
 ## Installation Requirements
@@ -27,6 +27,7 @@ The application has a user profile page that displays user details including the
 * Open the project using vs code using command code . or atom . depending on the text editor you're using.
 * Activate the virtual environment.
 * Install all the requirements.
+
  ## Running the Application
 
 * To run the application, open the cloned file in terminal and run the following command:
@@ -59,3 +60,25 @@ If the application malfunctions or develops a problem, feel free to contact me t
 
 This project is under the:
 MIT License
+
+Copyright (c) 2022 Nyawira Wachira
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+**Copyright (c) 2022 Nyawira Wachira**
