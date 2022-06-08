@@ -42,7 +42,7 @@
                     <h5 class="card-title">@{{post_item.user.username}}</h5>
                     <p class="card-text">{{post_item.caption}}</p>
                 <strong><small>{{post_item.posted}}</small></strong><br><br>    
-                <a href="{% url 'postdetails' post_item.id %}"><button type="button" class="btn btn-outline-primary  btn-sm"> Comment Here</button></a>              
+                <a href="{% url 'postdetails' post_item.id %}"><button type="button" class="btn btn-primary  btn-sm"> Comment Here</button></a>              
              </div>
             </div>                    
         {% endfor %}

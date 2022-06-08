@@ -23,7 +23,7 @@
 </head>
 <body>    
   {% block content %} 
-  
+   
     {% for message in messages %}
     <div class="alert alert-success alert-dismissible fade show" role="alert">     
         <p>{{message}}</p>
@@ -31,13 +31,19 @@
       {% endfor %} 
     </div>
     <div class="container mt-5">
-    <div class="col-6">
+      <div class="row">
+    <div class="col-3">
      <img style=" border-radius: 50%; width: 200px; height: 180px;" src="{{user.profile.profile_photo.url}}" alt="">
       <div class="media-body">
         <h2 class="account-heading">{{ user.username }}</h2>
         <p class="text-secondary">{{ user.email }}</p>
       </div>
     </div>
+    <div class="col-2" style="margin-top:70px;">Posts</div>
+      <div class="col-2" style="margin-top:70px;">Followers</div>
+        <div class="col-2"style="margin-top:70px;">Following</div>
+      </div>
+
         <div class="row">
           <div class="col-6">
             <legend class="border-bottom">Bio:</legend>
@@ -58,7 +64,7 @@
                 <img src="{{post.picture.url}}" class="card-img-top" alt="...">
                 <div class="card-body">
                   <a href="{% url 'postlike' post.id %}"><span class="material-icons" style="color:crimson;">favorite</span></a>
-                  <span class="material-symbols-outlined" >comment</span>
+                  <span class="material-symbols-outlined" >comment</span></a>
                   <span class="material-symbols-outlined" >arrow_outward</span> 
                   <p class="card-text">{{post.caption}}</p>
                   <p style="text-decoration:none;">{% for tag in post.tags.all %}<a href="">#{{ tag }}</a>{% endfor %}</p>
@@ -70,7 +76,7 @@
         {%  endfor %}
     </div>
   </div>    
-  
+
 {% endblock content %}
     
 {% block scripts %}
