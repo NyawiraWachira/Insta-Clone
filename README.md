@@ -6,11 +6,8 @@
 
 ## Description
 
-Instagram-Clone is a Django application that enables users to view images on the home page and click on each one of them to view the image details. 
-The application has a navbar that displays image locations and categories where users click to view all images associated with the specific categories and locations.
-The application also allows users to search for images through a search
-form where users have to input any of the names associated with a particular image category. Basically, AppGalleria is an application that displays a gallery of images and where details of each images are displayed on clicking the image.
-
+Instagram-Clone is a Django application that replicates a few features of Instagram web application. It enables users to view posts on the home page and click on each one of them to view the post details, like the post and comment on the post. Users can also create posts, write captions and hashtags on them.
+The application has a user profile page that displays user details including the profile picture, username, login user email and the bio, which users can edit to their preference user. Instagram-Clone also has an authentication system which allows users to sign up and login to access features of the application.
 
 ## Installation Requirements
 * Python version 3 
@@ -49,6 +46,7 @@ Technologies used in the development of this project include:
 * HTML
 * CSS
 * Pillow
+* Psql
 
 ## Known Bugs
 There are currently no known bugs.
