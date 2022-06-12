@@ -9,7 +9,7 @@ from .models import Post, Stream,Profile, Tag, Likes,Comment,Follow
 from django.template import loader
 from django.db import transaction
 from django.contrib.auth.models import User
-from django.urls import reverse
+from django.urls import reverse, resolve
 from django.http import HttpResponse, HttpResponseRedirect
 
 
@@ -17,10 +17,10 @@ from django.http import HttpResponse, HttpResponseRedirect
 
 @login_required
 def profile(request):
+    user=request.user
+    posts= Post.objects.filter(user=user).order_by('-posted')
 
-    posts = Post.objects.all()
-     
-    return render(request, 'profile.html', {'posts': posts,})
+    return render(request, 'profile.html', {'posts':posts})
    
 
 @login_required
@@ -37,7 +37,7 @@ def home(request):
 
     }
 
-    return HttpResponse(template.render(context, request  ))    
+    return HttpResponse(template.render(context, request))    
    
 
 @login_required
