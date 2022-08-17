@@ -1,4 +1,4 @@
-# Instagram-Clone
+# Insta-Clone
 
 #### By
 
@@ -6,8 +6,8 @@
 
 ## Description
 
-Instagram-Clone is a Django application that replicates a few features of Instagram web application. It enables users to view posts on the home page and click on each one of them to view the post details, to like the post and to comment on the post. Users can also create posts and put captions and hashtags on them.
-The application has a user profile page that displays user details including the profile picture, username, login user email and the bio, which users can edit to their preference user. Instagram-Clone also has an authentication system which allows users to sign up and login to access features of the application.
+Insta-Clone is a Django application that replicates a few features of Instagram web application. It enables users to view posts on the home page and click on each one of them to view the post details, to like the post and to comment on the post. Users can also create posts and put captions and hashtags on them.
+The application has a user profile page that displays user details including the profile picture, username, login user email and the bio, which users can edit to their preference user. Insta-Clone also has an authentication system which allows users to sign up and login to access features of the application.
 
 ## Installation Requirements
 * Python version 3 
